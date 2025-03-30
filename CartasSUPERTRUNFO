@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <string.h>
+
+// Estrutura para representar uma carta do jogo
+typedef struct {
+    char nome[50];
+    long populacao;
+    double area;
+    double pib_per_capita;
+    double idh;
+} Carta;
+
+// Função para exibir os dados da carta
+void exibirCarta(Carta c) {
+    printf("\n========= CARTA =========\n");
+    printf("Nome: %s\n", c.nome);
+    printf("População: %ld\n", c.populacao);
+    printf("Área: %.2f km²\n", c.area);
+    printf("PIB per capita: %.2f\n", c.pib_per_capita);
+    printf("IDH: %.3f\n", c.idh);
+    printf("========================\n");
+}
+
+// Função para comparar duas cartas com base em um atributo
+void compararCartas(Carta c1, Carta c2, int atributo) {
+    printf("\nComparação entre %s e %s:\n", c1.nome, c2.nome);
+    switch (atributo) {
+        case 1: // População
+            printf("Vencedor: %s\n", (c1.populacao > c2.populacao) ? c1.nome : c2.nome);
+            break;
+        case 2: // Área
+            printf("Vencedor: %s\n", (c1.area > c2.area) ? c1.nome : c2.nome);
+            break;
+        case 3: // PIB per capita
+            printf("Vencedor: %s\n", (c1.pib_per_capita > c2.pib_per_capita) ? c1.nome : c2.nome);
+            break;
+        case 4: // IDH
+            printf("Vencedor: %s\n", (c1.idh > c2.idh) ? c1.nome : c2.nome);
+            break;
+        default:
+            printf("Atributo inválido!\n");
+    }
+}
+
+int main() {
+    // Criando algumas cartas
+    Carta brasil = {"Brasil", 214000000, 8515767, 8697.0, 0.754};
+    Carta eua = {"Estados Unidos", 331000000, 9834000, 69000.0, 0.921};
+
+    // Exibindo cartas
+    exibirCarta(brasil);
+    exibirCarta(eua);
+
+    // Comparando por PIB per capita (atributo 3)
+    compararCartas(brasil, eua, 3);
+
+    return 0;
+}
